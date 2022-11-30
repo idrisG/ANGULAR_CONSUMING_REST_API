@@ -5,7 +5,7 @@
 <div class="search">
     <button class="btn btn-menu btn-submit" (click)="getAllUser()">Get All Users</button>
 </div>
-<div>
+<div *ngIf="allUserdto">
     <table>
         <thead>
             <tr>
