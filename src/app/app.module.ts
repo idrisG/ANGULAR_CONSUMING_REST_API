@@ -10,10 +10,11 @@ import { LoginComponent } from './component/login/login.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuardService } from './service/auth-guard.service';
+import { GetUserdtoComponent } from './component/get-userdto/get-userdto.component';
 
 const appRoutes: Routes =[
   {path : 'login', component : LoginComponent},
-  {path : 'fetch-user', component : UserdtoComponent},
+  {path : 'fetch-user', component : GetUserdtoComponent},
   {path : 'users', component : UserdtoFormComponent, canActivate : [AuthGuardService]}
 ];
 
@@ -22,7 +23,8 @@ const appRoutes: Routes =[
     AppComponent,
     UserdtoComponent,
     UserdtoFormComponent,
-    LoginComponent
+    LoginComponent,
+    GetUserdtoComponent
   ],
   imports: [
     BrowserModule,

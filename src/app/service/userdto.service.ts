@@ -34,4 +34,8 @@ export class UserdtoService {
   getUser(id:number) : Observable<Userdto> {
     return this.http.get<Userdto>(`${this.baseUrl}/${id}`);
   }
+
+  getAllUser() : Observable<Userdto[]> {
+    return this.http.get<Userdto[]>(this.baseUrl);
+  }
 }

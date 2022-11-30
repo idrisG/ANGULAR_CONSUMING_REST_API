@@ -1,0 +1,42 @@
+<div class="search">
+    <input type="text" pattern="[0-9]*" name="id" placeholder="0" #idUser (keyup.enter)="getUser(idUser.value)">
+    <button class="btn btn-menu btn-submit" (click)="getUser(idUser.value)">Get</button>
+</div>
+<div class="search">
+    <button class="btn btn-menu btn-submit" (click)="getAllUser()">Get All Users</button>
+</div>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>USERNAME</th>
+                            <th>BIRTHDATE</th>
+                            <th>COUNTRY</th>
+                            <th>PHONE NUMBER</th>
+                            <th>GENDER</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of allUserdto">
+                            <td>{{user.id}}</td>
+                            <td>{{user.username}}</td>
+                            <td>{{user.birthdate}}</td>
+                            <td>{{user.country}}</td>
+                            <td>{{user.phoneNumber}}</td>
+                            <td>{{user.gender}}</td>
+                        </tr>
+                    </tbody>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
