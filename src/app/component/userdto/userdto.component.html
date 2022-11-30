@@ -1,0 +1,40 @@
+
+<table *ngIf="userdto">
+    <thead>
+        <tr>
+            <th>User</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>USERNAME</th>
+                        <th>BIRTHDATE</th>
+                        <th>COUNTRY</th>
+                        <th>PHONE NUMBER</th>
+                        <th>GENDER</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{userdto.id}}</td>
+                        <td>{{userdto.username}}</td>
+                        <td>{{userdto.birthdate}}</td>
+                        <td>{{userdto.country}}</td>
+                        <td>{{userdto.phoneNumber}}</td>
+                        <td>{{userdto.gender}}</td>
+                    </tr>
+                </tbody>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="search">
+    <input type="text" pattern="[0-9]*" name="id" placeholder="0" #idUser (keyup.enter)="getUser(idUser.value)">
+    <button class="btn btn-menu btn-submit" (click)="getUser(idUser.value)">Get</button>
+</div>
+

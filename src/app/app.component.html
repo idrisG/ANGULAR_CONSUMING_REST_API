@@ -1,0 +1,22 @@
+<section class="nav">
+  <input id="menu-toggle" type="checkbox" />
+  <label class='menu-button-container' for="menu-toggle">
+  <div class='menu-button'></div></label>
+  <ul class="topnav">
+    <li><a routerLink="/users">Create User</a></li>
+    <li><a class="active" routerLink="/fetch-user">Retrieve User</a></li>
+    <li><a class="active" routerLink="/employees">Employees</a></li>
+    <li>
+      <a *ngIf="!(loggedIn |async)" class="log-in" routerLink="/login">Log in</a>
+      <a *ngIf="(loggedIn |async)" class="log-out" (click)="logout()">Log out</a>
+    </li>
+  </ul>
+</section>
+<h2>Create or Retriever User</h2>
+<div class="content" role="main">
+  <div class="body">
+    <div class="header">
+    </div>
+    <router-outlet ></router-outlet>
+  </div>
+</div>
