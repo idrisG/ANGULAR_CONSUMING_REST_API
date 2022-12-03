@@ -29,7 +29,7 @@ describe('LoginService', () => {
       expect(logged).toBeTrue();
       done();
     });
-    const req = httpMock.expectOne('http://localhost:8080/employee/login');
+    const req = httpMock.expectOne('http://localhost:8080/employees/login');
     expect(req.request.method).toEqual('POST');
     req.flush(true);
     httpMock.verify();
