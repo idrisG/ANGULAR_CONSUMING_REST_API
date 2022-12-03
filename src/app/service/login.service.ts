@@ -8,7 +8,7 @@ import { BehaviorSubject, catchError, Observable, ReplaySubject, Subject, throwE
 export class LoginService {
   private loggedIn : Subject<boolean> = new ReplaySubject<boolean>(1); 
 
-  private baseUrl = "http://localhost:8080/employees"; 
+  private baseUrl = "http://localhost:8080/employee"; 
 
   private token!:string;
   /**

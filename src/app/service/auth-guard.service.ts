@@ -7,14 +7,14 @@ import { LoginService } from './login.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate {
+export class AuthGuardService{ //implements CanActivate {
   //loggedIn = this.loginService.whenLoggedIn().pipe(map((log)=>{return log;}));
-  constructor(private _router : Router, private loginService : LoginService) { }
+  //constructor(private _router : Router, private loginService : LoginService) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> { 
+  /*canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> { 
     //this.loginService.whenLoggedIn().subscribe((log)=>{console.log(log);});
     //console.log(this.loggedIn);
     //return this.loggedIn;
     return true;
-  }
+  }*/
 }
