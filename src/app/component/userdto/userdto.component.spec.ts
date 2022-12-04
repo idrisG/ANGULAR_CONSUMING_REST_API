@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserdtoComponent } from './userdto.component';
-
+/*
 describe('UserdtoComponent', () => {
   let component: UserdtoComponent;
   let fixture: ComponentFixture<UserdtoComponent>;
@@ -20,4 +20,4 @@ describe('UserdtoComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+});*/

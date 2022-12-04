@@ -11,7 +11,7 @@ import { LoginService } from 'src/app/service/login.service';
 export class LoginComponent{
   private username!:string|null;
   loggedIn = this.loginService.whenLoggedIn().pipe(map((log)=>{return log;}));
-  logged = false;
+  //logged = false;
   loginForm = new FormGroup({
     username : new FormControl(''),
     password : new FormControl('')

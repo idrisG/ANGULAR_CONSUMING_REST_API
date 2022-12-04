@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { LoginComponent } from './component/login/login.component';
 
 describe('AppComponent', () => {
-    const FakeLoginService : Pick<LoginService, keyof LoginService> = {
+  const FakeLoginService : Pick<LoginService, keyof LoginService> = {
     login : jasmine.createSpy('login').and.returnValue(of(true)),
     confirmLogged(logged :boolean){
       this.whenLoggedIn().next(logged);
@@ -23,10 +23,9 @@ describe('AppComponent', () => {
   let httpMock: HttpTestingController;
   let httpClient: HttpClient;
   let router : Router;
-  let mockRouter = jasmine.createSpyObj('Router',['navigate']);
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule,RouterTestingModule.withRoutes([{path:'login',component:LoginComponent}])],
+      imports: [HttpClientTestingModule,RouterTestingModule.withRoutes([{path:'login',component:AppComponent}])],
       declarations: [
         AppComponent
       ],
@@ -43,19 +42,7 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
-/*
-  it(`should have as title 'add-user-app-frontend'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('add-user-app-frontend');
-  });*/
-/*
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('add-user-app-frontend app is running!');
-  });*/
+  
   it('navigate through navbar ', ()=>{
     let fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
@@ -65,6 +52,31 @@ describe('AppComponent', () => {
       const url = `${baseUrl}/login`;  
       expect(router.url).toEqual('/login');    
     });
-    expect(app).toBeTruthy();
   });
+  
+  it('click on menu toggle expect menuChecked to be true', ()=>{
+    let fixture = TestBed.createComponent(AppComponent);
+    fixture.nativeElement.querySelector('input').click();
+    const app = fixture.debugElement.componentInstance;
+    expect(app.menuChecked).toBeTrue();
+    
+  });
+
+  it('logout anavailable since not logged in', ()=>{
+    let fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;    
+    fixture.detectChanges(); //necessary to  access async observable
+    expect(fixture.nativeElement.querySelector('.log-in')).not.toBeNull();
+    fixture.nativeElement.querySelector('.log-in').click();
+  });
+
+  it('logout available when already logged in', ()=>{
+    let fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    app.loggedIn=of(true);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.log-out')).not.toBeNull();
+    fixture.nativeElement.querySelector('.log-out').click();
+    console.log();
+  })
 });
