@@ -17,6 +17,8 @@ export class GetUserdtoComponent {
    * @param id 
    */
   getUser(id : string){
+/*    let user = new Userdto(0,'username','1996-01-01','France','0102030405','MALE');
+    this.allUserdto=[user,user,user,user,user,user];/* */
     this.userdtoService.getUser(Number(id)).pipe(take(1)).subscribe({
       next : (user => { 
         this.allUserdto = [user];
@@ -25,7 +27,7 @@ export class GetUserdtoComponent {
       error : (error => {
         alert(error.error.message);
       })
-    });  
+    });/* */
   }
 
   getAllUser(){

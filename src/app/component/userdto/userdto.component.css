@@ -1,4 +1,31 @@
-td, th{
+*{
+    border:1px solid red;
+}
+.table{
+}
+.table-body{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    grid-template-rows:repeat(2,100px);
+/*    grid-gap:10px;
+    grid-auto-rows:minmax(100px,auto);
+*/}
+.title{
+    align-content: center;
+}
+.table-head{
+
+}
+.head{
+
+}
+.table-content{
+
+}
+.content{
+
+}
+/*td, th{
     border: 1px solid #999;
     padding: 0.5rem;
 }
@@ -61,4 +88,4 @@ input {
         width: 100%;
         margin-left: 0;
     }
-}
+}*/

@@ -6,6 +6,12 @@ input,select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    background: transparent;
+    color: #f9f9f9;
+}
+select option {
+    background: #000;
+    color: #fff;
 }
 label{
     width: 20%;
@@ -14,7 +20,7 @@ label{
 }
 .form{    
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: #333333;
     padding: 20px;
     margin-top: 20px;
 }

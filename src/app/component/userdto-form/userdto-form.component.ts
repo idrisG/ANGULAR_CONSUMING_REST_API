@@ -44,6 +44,7 @@ export class UserdtoFormComponent {
    * Method used to register a user
    */
   create(){
+    console.log(this.loginService.getToken());
     this.userdtoService.createUser(this.loginService.getToken(),JSON.stringify(this.formUser.value))
       .pipe(take(1)).subscribe({
         next: (userdto =>{ 

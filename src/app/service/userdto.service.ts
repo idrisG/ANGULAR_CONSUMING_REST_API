@@ -22,8 +22,8 @@ export class UserdtoService {
    * @returns Observable<Userdto> response from server
    */
   createUser(token :string, userdto : string) : Observable<Userdto>{
-    let userHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'Basic ' + token });
-    return this.http.post<Userdto>(`${this.baseUrl}`,userdto,{headers : userHeader});
+//    let userHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'Basic ' + token });
+    return this.http.post<Userdto>(`${this.baseUrl}`,userdto);//,{headers : userHeader});
   }
 
   /**

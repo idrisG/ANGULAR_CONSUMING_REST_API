@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -11,11 +11,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuardService } from './service/auth-guard.service';
 import { GetUserdtoComponent } from './component/get-userdto/get-userdto.component';
+import { AuthInterceptorInterceptor } from './interceptor/auth-interceptor.interceptor';
+import { LoginService } from './service/login.service';
 
 const appRoutes: Routes =[
   {path : 'login', component : LoginComponent},
   {path : 'fetch-user', component : GetUserdtoComponent},
-  {path : 'users', component : UserdtoFormComponent, canActivate : [AuthGuardService]}
+  {path : 'users', component : UserdtoFormComponent},//, canActivate : [AuthGuardService]}
+  {path : 'fetch-template', component : UserdtoComponent}
 ];
 
 @NgModule({
@@ -33,7 +36,7 @@ const appRoutes: Routes =[
     MatDialogModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthGuardService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass:AuthInterceptorInterceptor, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

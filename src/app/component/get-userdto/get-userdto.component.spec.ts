@@ -44,14 +44,14 @@ describe('GetUserdtoComponent', () => {
     fixture.nativeElement.querySelector('input').value='0';
     fixture.nativeElement.querySelectorAll('button')[0].click();
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('table')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('.user')).not.toBeNull();
     expect(component.allUserdto[0]).toEqual(user);
   });
   
   it('display all users when retrieving all users', ()=>{
     fixture.nativeElement.querySelectorAll('button')[1].click();
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('table')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('.user')).not.toBeNull();
     expect(component.allUserdto).toEqual([user]);
   });
 });
