@@ -18,12 +18,12 @@ export class AppComponent{
           document.getElementById("menu-toggle")?.click();
           console.log("router event");
       }
-    }); 
+    });
   }
 
   loggedIn = this.loginService.whenLoggedIn().pipe(map((log) =>{console.log(`appComponent log`);return log;}));
   logout(): void {
     console.log('logout');
-    this.loginService.confirmLogged(false);
+    this.loginService.logout();
   }
 }

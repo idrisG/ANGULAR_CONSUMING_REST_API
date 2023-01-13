@@ -23,9 +23,7 @@ describe('AuthInterceptorInterceptor', () => {
     confirmToken(token:string){
       this.whenToken().next(token);
     },
-    getToken(){
-      return "";
-    }
+    logout(){}
 
   }
   beforeEach(() => TestBed.configureTestingModule({

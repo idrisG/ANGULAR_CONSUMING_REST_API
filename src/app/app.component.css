@@ -164,6 +164,7 @@ li a:hover{
     text-decoration: underline;
     cursor: pointer;
 }
+/*
 li .log-in:hover{
     background-color: #FFF1;
 }

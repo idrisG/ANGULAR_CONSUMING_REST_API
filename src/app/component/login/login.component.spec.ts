@@ -19,7 +19,6 @@ describe('LoginComponent', () => {
     confirmLogged(logged: boolean) {
       this.whenLoggedIn().next(logged);
     },
-    getToken() { return ""; },
     whenLoggedIn() {
       return new ReplaySubject<boolean>(1);
     },
@@ -30,7 +29,8 @@ describe('LoginComponent', () => {
     ,
     confirmToken: function (token: string): void {
       this.whenToken().next(token);
-    }
+    },
+    logout(){}
   };
   beforeEach(async () => {
     await TestBed.configureTestingModule({

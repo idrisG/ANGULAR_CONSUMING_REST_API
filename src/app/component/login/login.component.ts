@@ -32,18 +32,14 @@ export class LoginComponent{
   login(){
     if(this.loginForm.value.username && this.loginForm.value.password){
       let username = this.loginForm.value.username;
-//      let token = window.btoa(`${this.loginForm.value.username}:${this.loginForm.value.password}`);
       let loginRequest = new LoginRequest(this.loginForm.value.username,this.loginForm.value.password);
-//      this.loginService.login(token).subscribe((response:boolean)=>{
       this.loginService.loginToken(loginRequest).subscribe((response:JwtResponse)=>{
         console.log(response);
         if(response){
-//          console.log(token);
           this.loginService.confirmToken(response.token);
           this.username = response.username;
           this.loginService.confirmLogged(true);
           this.loginForm.reset();
-          console.log(this.loginService.getToken());
         }
       })
     }

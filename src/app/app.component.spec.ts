@@ -16,7 +16,7 @@ describe('AppComponent', () => {
     confirmLogged(logged: boolean) {
       this.whenLoggedIn().next(logged);
     },
-    getToken() { return ""; },
+    logout(){},
     whenLoggedIn() {
       return new ReplaySubject<boolean>(1);
     },
@@ -85,6 +85,5 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('.log-out')).not.toBeNull();
     fixture.nativeElement.querySelector('.log-out').click();
-    console.log();
   })
 });

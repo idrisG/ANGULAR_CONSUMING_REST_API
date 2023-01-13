@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders, HttpInterceptor } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, ReplaySubject, Subject, throwError } from 'rxjs';
+import { Observable, ReplaySubject, Subject} from 'rxjs';
 import { JwtResponse } from '../model/jwt-response.model';
 import { LoginRequest } from '../model/login-request.model';
 
@@ -12,7 +12,6 @@ export class LoginService{
 
   private baseUrl = "http://localhost:8080/employees"; 
 
-  private token!:string;
   private jwtoken: Subject<string> = new ReplaySubject<string>(1);
 
   /**
@@ -22,14 +21,12 @@ export class LoginService{
   constructor(private http : HttpClient) { }
   /**
    * login method create post request return observable waiting for "subscription"
-   * @param username 
-   * @param password 
+   * @param token
    * @returns 
    */
   login(token:string) : Observable<boolean>{
-    let employeeHeader = new HttpHeaders({'content-type' : 'application/json', 'Authorization' : 'Basic ' + token});
+    let employeeHeader = new HttpHeaders({'content-type' : 'application/json'});
     console.log("login service");
-    this.token=token;
     return this.http.post<boolean>(`${this.baseUrl}/login`,null,{headers : employeeHeader});
   }
 
@@ -40,23 +37,19 @@ export class LoginService{
 
   confirmLogged(logged :boolean){
     this.loggedIn.next(logged);
-    if(!logged){
-      console.log('log out log service');
-      this.confirmToken('');
-      this.token='';
-    }
   }
   confirmToken(token:string){
     this.jwtoken.next(token);
   }
-  getToken():string{
-    return this.token;
-  }
-
   whenLoggedIn(){
     return this.loggedIn;
   }
   whenToken(){
     return this.jwtoken;
   }
+  logout(){
+    this.confirmLogged(false);
+    this.confirmToken('');
+  }
+
 }
