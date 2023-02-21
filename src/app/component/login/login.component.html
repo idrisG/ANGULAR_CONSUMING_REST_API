@@ -1,14 +1,14 @@
 <p *ngIf="(loggedIn|async)">Employee {{getUsername()}} connected {{(loggedIn|async)}}</p>
 <div class="login-form" *ngIf="!(loggedIn|async)">
-<form [formGroup]="loginForm" (ngSubmit)="login()">
-    <div>
-        <label for="username">Username</label>
-        <input class="username" type="text" name="username" formControlName="username"/>
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <input class="password" type="password" name="password" formControlName="password"/>
-    </div>
-    <button type="submit" class="btn btn-submit" >Login</button>
-</form>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div>
+            <label for="username">Username</label>
+            <input class="username" type="text" name="username" formControlName="username"/>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input class="password" type="password" name="password" formControlName="password"/>
+        </div>
+        <button type="submit" class="btn btn-submit" >Login</button>
+    </form>
 </div>

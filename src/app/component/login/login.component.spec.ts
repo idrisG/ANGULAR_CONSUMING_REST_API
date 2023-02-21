@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { of, ReplaySubject } from 'rxjs';
+import { Observable, of, ReplaySubject } from 'rxjs';
+import { JwtResponse } from 'src/app/model/jwt-response.model';
+import { LoginRequest } from 'src/app/model/login-request.model';
 import { LoginService } from 'src/app/service/login.service';
 
 import { LoginComponent } from './login.component';
@@ -13,15 +15,22 @@ describe('LoginComponent', () => {
   let httpMock: HttpTestingController;
   let httpClient: HttpClient;
   const FakeLoginService : Pick<LoginService, keyof LoginService> = {
-    login : jasmine.createSpy('login').and.returnValue(of(true)),
-    confirmLogged(logged :boolean){
+    login: jasmine.createSpy('login').and.returnValue(of(true)),
+    confirmLogged(logged: boolean) {
       this.whenLoggedIn().next(logged);
     },
-    setToken(token : string){},
-    getToken(){return "";},
-    whenLoggedIn(){
+    whenLoggedIn() {
       return new ReplaySubject<boolean>(1);
-    }
+    },
+    whenToken() {
+      return new ReplaySubject<string>(1);
+    },
+    loginToken: jasmine.createSpy('loginToken').and.returnValue(of(new JwtResponse("Bearer","token","username",["ROLE_USER"])))
+    ,
+    confirmToken: function (token: string): void {
+      this.whenToken().next(token);
+    },
+    logout(){}
   };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -80,12 +89,15 @@ describe('LoginComponent', () => {
   it('log in after input of username and password', ()=>{
     const loginFormUsernameElement : HTMLInputElement = fixture.debugElement.nativeElement.querySelector('.username');
     const loginFormPasswordElement : HTMLInputElement = fixture.debugElement.nativeElement.querySelector('.password');
-    loginFormUsernameElement.value = "username";
+    const username = "username";
+    loginFormUsernameElement.value = username;
     loginFormPasswordElement.value = "password";
     loginFormUsernameElement.dispatchEvent(new Event('input'));
     loginFormPasswordElement.dispatchEvent(new Event('input'));
     fixture.detectChanges();
     fixture.debugElement.nativeElement.querySelector('.btn-submit').click();
-    expect(component.getUsername()).toEqual(loginFormUsernameElement.value);
+    expect(component.getUsername()).toEqual(username);
+    expect(loginFormUsernameElement.value).toEqual('');
+    expect(loginFormUsernameElement.value).toEqual('');
   });
 });

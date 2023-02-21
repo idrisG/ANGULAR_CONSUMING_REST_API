@@ -50,7 +50,7 @@ describe('UserdtoService', () => {
   });
 
   it('test call http POST Method', done => {
-    service.createUser('token',JSON.stringify(userdto)).subscribe(user => {
+    service.createUser(JSON.stringify(userdto)).subscribe(user => {
       expect(user).toEqual(userdto);
       done();
     });

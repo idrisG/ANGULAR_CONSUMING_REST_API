@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { map, Subscription } from 'rxjs';
+import { JwtResponse } from 'src/app/model/jwt-response.model';
+import { LoginRequest } from 'src/app/model/login-request.model';
 import { LoginService } from 'src/app/service/login.service';
 
 @Component({
@@ -30,12 +32,14 @@ export class LoginComponent{
   login(){
     if(this.loginForm.value.username && this.loginForm.value.password){
       let username = this.loginForm.value.username;
-      let token = window.btoa(`${this.loginForm.value.username}:${this.loginForm.value.password}`);
-      this.loginService.login(token).subscribe((response:boolean)=>{
+      let loginRequest = new LoginRequest(this.loginForm.value.username,this.loginForm.value.password);
+      this.loginService.loginToken(loginRequest).subscribe((response:JwtResponse)=>{
+        console.log(response);
         if(response){
-          this.username = username;
+          this.loginService.confirmToken(response.token);
+          this.username = response.username;
           this.loginService.confirmLogged(true);
-          this.loginService.setToken(token);
+          this.loginForm.reset();
         }
       })
     }

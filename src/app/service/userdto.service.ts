@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Userdto } from '../model/userdto';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -17,13 +17,12 @@ export class UserdtoService {
   constructor(private http: HttpClient) { }
 
   /**
-   * Create post request with this.baseUrl as url,  stringifyed userdto as body and a header
+   * Create post request with this.baseUrl as url,  stringifyed userdto as body
    * @param userdto 
    * @returns Observable<Userdto> response from server
    */
-  createUser(token :string, userdto : string) : Observable<Userdto>{
-    let userHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'Basic ' + token });
-    return this.http.post<Userdto>(`${this.baseUrl}`,userdto,{headers : userHeader});
+  createUser(userdto : string) : Observable<Userdto>{
+    return this.http.post<Userdto>(`${this.baseUrl}`,userdto);
   }
 
   /**

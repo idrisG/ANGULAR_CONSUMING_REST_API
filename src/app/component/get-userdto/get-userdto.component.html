@@ -1,12 +1,59 @@
 <div class="search">
     <input type="text" pattern="[0-9]*" name="id" placeholder="0" #idUser (keyup.enter)="getUser(idUser.value)">
     <button class="btn btn-menu btn-submit" (click)="getUser(idUser.value)">Get</button>
+
 </div>
 <div class="search">
-    <button class="btn btn-menu btn-submit" (click)="getAllUser()">Get All Users</button>
+    <button class="btn btn-menu btn-submit btn-all" (click)="getAllUser()">Get All Users</button>
 </div>
-<div *ngIf="allUserdto">
-    <table>
+<!--<div *ngIf="allUserdto">
+    <div class="table">
+        <div class="table-body">
+            <div class="title">User</div>
+            <div class="table-head">
+                <div class="content">ID</div>
+                <div class="content">USERNAME</div>
+                <div class="content">BIRTHDATE</div>
+                <div class="content">COUNTRY</div>
+                <div class="content">PHONE NUMBER</div>
+                <div class="content">GENDER</div>
+            </div>
+            <div *ngFor="let user of allUserdto" class="table-content">
+                <div class="content">{{user.id}}</div>
+                <div class="content">{{user.username}}</div>
+                <div class="content">{{user.birthdate}}</div>
+                <div class="content">{{user.country}}</div>
+                <div class="content">{{user.phoneNumber}}</div>
+                <div class="content">{{user.gender}}</div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div *ngIf="allUserdto" class="users">
+    <div *ngFor="let userdto of allUserdto" class="user">
+        <div class="row">
+            <div class="name">Username</div>
+            <div class="value">{{userdto.username}}</div>
+        </div>
+        <div class="row">
+            <div class="name">Birthdate</div>
+            <div class="value">{{userdto.birthdate}}</div>
+        </div>
+        <div class="row">
+            <div class="name">Country</div>
+            <div class="value">{{userdto.country}}</div>
+        </div>
+        <div class="row">
+            <div class="name">Phone Number</div>
+            <div class="value">{{userdto.phoneNumber ? userdto.phoneNumber : "none"}}</div>
+        </div>
+        <div class="row">
+            <div class="name">Gender</div>
+            <div class="value">{{userdto.gender ? userdto.gender : "none"}}</div>
+        </div>
+    </div>
+</div>
+    <!--<table>
         <thead>
             <tr>
                 <th>User</th>
@@ -39,4 +86,4 @@
             </tr>
         </tbody>
     </table>
-</div>
+</div>-->

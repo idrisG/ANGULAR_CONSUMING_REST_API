@@ -1,40 +1,21 @@
-
-<table *ngIf="userdto">
-    <thead>
-        <tr>
-            <th>User</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>USERNAME</th>
-                        <th>BIRTHDATE</th>
-                        <th>COUNTRY</th>
-                        <th>PHONE NUMBER</th>
-                        <th>GENDER</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{userdto.id}}</td>
-                        <td>{{userdto.username}}</td>
-                        <td>{{userdto.birthdate}}</td>
-                        <td>{{userdto.country}}</td>
-                        <td>{{userdto.phoneNumber}}</td>
-                        <td>{{userdto.gender}}</td>
-                    </tr>
-                </tbody>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<div class="search">
-    <input type="text" pattern="[0-9]*" name="id" placeholder="0" #idUser (keyup.enter)="getUser(idUser.value)">
-    <button class="btn btn-menu btn-submit" (click)="getUser(idUser.value)">Get</button>
+<div class="table">
+    <div class="table-body">
+        <div class="title">User</div>
+        <div class="table-head">
+            <div class="head">ID</div>
+            <div class="head">USERNAME</div>
+            <div class="head">BIRTHDATE</div>
+            <div class="head">COUNTRY</div>
+            <div class="head">PHONE NUMBER</div>
+            <div class="head">GENDER</div>
+        </div>
+        <div class="table-content">
+            <div class="content">user.id</div>
+            <div class="content">user.username</div>
+            <div class="content">user.birthdate</div>
+            <div class="content">user.country</div>
+            <div class="content">user.phoneNumber</div>
+            <div class="content">user.gender</div>
+        </div>
+    </div>
 </div>
-

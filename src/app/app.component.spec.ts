@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { of, ReplaySubject } from 'rxjs';
+import { Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { AppComponent } from './app.component';
 import { LoginService } from './service/login.service';
 import {RouterTestingModule} from '@angular/router/testing' ;
@@ -7,17 +7,25 @@ import { Router } from '@angular/router';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 import { LoginComponent } from './component/login/login.component';
+import { JwtResponse } from './model/jwt-response.model';
+import { LoginRequest } from './model/login-request.model';
 
 describe('AppComponent', () => {
   const FakeLoginService : Pick<LoginService, keyof LoginService> = {
-    login : jasmine.createSpy('login').and.returnValue(of(true)),
-    confirmLogged(logged :boolean){
+    login: jasmine.createSpy('login').and.returnValue(of(true)),
+    confirmLogged(logged: boolean) {
       this.whenLoggedIn().next(logged);
     },
-    setToken(token : string){},
-    getToken(){return "";},
-    whenLoggedIn(){
+    logout(){},
+    whenLoggedIn() {
       return new ReplaySubject<boolean>(1);
+    },
+    loginToken: jasmine.createSpy('loginToken').and.returnValue(of(new JwtResponse("","","",[""]))),
+    confirmToken: function (token: string): void {
+      this.whenToken().next(token);
+    },
+    whenToken: function (): Subject<string> {
+      return new ReplaySubject<string>(1);
     }
   };
   let httpMock: HttpTestingController;
@@ -77,6 +85,5 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('.log-out')).not.toBeNull();
     fixture.nativeElement.querySelector('.log-out').click();
-    console.log();
   })
 });

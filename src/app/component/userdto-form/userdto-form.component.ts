@@ -44,7 +44,7 @@ export class UserdtoFormComponent {
    * Method used to register a user
    */
   create(){
-    this.userdtoService.createUser(this.loginService.getToken(),JSON.stringify(this.formUser.value))
+    this.userdtoService.createUser(JSON.stringify(this.formUser.value))
       .pipe(take(1)).subscribe({
         next: (userdto =>{ 
         console.log(userdto);
@@ -53,8 +53,4 @@ export class UserdtoFormComponent {
         error: (error => alert(error.error.message))
       });
   }
-  //Prevent memory leak (if someone log in then log out then login again etc.. the subscription will recursively add)
-  /*ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }*/
 }
