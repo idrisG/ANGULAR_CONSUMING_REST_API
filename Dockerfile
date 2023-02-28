@@ -15,6 +15,8 @@ COPY package.json package-lock.json ./
 # Add source code to app
 COPY . .
 
+RUN npm install
+
 # Generate the build of the application
 # ARG config=production ## create var configuration that can be used like : --configuration $config
 RUN npm run build
