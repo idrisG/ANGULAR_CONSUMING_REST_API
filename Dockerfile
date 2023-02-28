@@ -7,7 +7,7 @@ FROM node:17.0.1-bullseye-slim as build
 WORKDIR /app
 
 # Install all dependencies (only of there is a change in package.json and package-lock.json)
-RUN npm install -g @angular/cli
+RUN npm install -g @angular/cli@13
 
 # Copy package.json and package-lock.json, if no change RUN npm install will not be executed
 COPY package.json package-lock.json ./
