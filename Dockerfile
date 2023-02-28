@@ -1,7 +1,7 @@
 # Stage 1 compile and build angular codebase
 
 # Use officiale node image as the base image
-FROM node:17.0.1-bullseye-slim as build
+FROM node:16-bullseye-slim as build
 
 # Set the working directory
 WORKDIR /app
