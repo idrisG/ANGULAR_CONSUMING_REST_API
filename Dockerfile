@@ -1,18 +1,16 @@
 # Stage 1 compile and build angular codebase
 
 # Use officiale node image as the base image
-FROM node:alpine3.17 as build
+FROM node:17.0.1-bullseye-slim as build
 
 # Set the working directory
 WORKDIR /app
 
+# Install all dependencies (only of there is a change in package.json and package-lock.json)
+RUN npm install -g @angular/cli
+
 # Copy package.json and package-lock.json, if no change RUN npm install will not be executed
 COPY package.json package-lock.json ./
-
-# Install all dependencies (only of there is a change in package.json and package-lock.json)
-RUN npm install --legacy-peer-deps
-
-RUN npm install -g @angular/cli
 
 # Add source code to app
 COPY . .
